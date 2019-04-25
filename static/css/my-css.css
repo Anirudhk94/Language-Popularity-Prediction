@@ -1,0 +1,12 @@
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.jumbotron {
+  background-image: url("../img/jumbotron_bg5.jpg");
+  background-size: cover;
+  margin-bottom: 0;
+  color: white;
+}
+

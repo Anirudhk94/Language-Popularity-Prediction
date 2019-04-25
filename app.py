@@ -4,14 +4,11 @@ from flask import render_template
 from pymongo import MongoClient
 import urllib
 import json
-import pandas as pd
-
 
 app = Flask(__name__)
 
-
-
 # Info for local connection to MongoDB
+MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://singham:'+urllib.quote("Logix@1994")+'@cluster0-shard-00-00-coysm.mongodb.net:27017,cluster0-shard-00-01-coysm.mongodb.net:27017,cluster0-shard-00-02-coysm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true')
 DBS_NAME = os.getenv('DBS_NAME', 'language_popularity')
 COLLECTION_NAME = 'stackoverflow'
 
@@ -23,22 +20,22 @@ def index():
     """
     return render_template("index.html")
 
-
-@app.route("/init")
-def init_data():
-    df = pd.read_csv("survey_results_public.csv")
-
-
-    with MongoClient(MONGODB_URI) as connection:
-        # Define which collection we wish to access
-        collection = connection[DBS_NAME][COLLECTION_NAME]
-        # Retrieve a result set only with the fields defined in FIELDS
-        # projects = collection.find(projection=FIELDS)
-        for rec in df.iloc[5:].to_dict('records'):
-            collection.insert_one(rec)
-
-        # Convert projects to a list in a JSON object and return the JSON data
-        #return json.dumps(list(projects))
+# This is called just once. For populating the remote MongoDB
+# @app.route("/init")
+# def init_data():
+#     df = pd.read_csv("survey_results_public.csv")
+#
+#
+#     with MongoClient(MONGODB_URI) as connection:
+#         # Define which collection we wish to access
+#         collection = connection[DBS_NAME][COLLECTION_NAME]
+#         # Retrieve a result set only with the fields defined in FIELDS
+#         # projects = collection.find(projection=FIELDS)
+#         for rec in df.iloc[5:].to_dict('records'):
+#             collection.insert_one(rec)
+#
+#         # Convert projects to a list in a JSON object and return the JSON data
+#         #return json.dumps(list(projects))
 
 @app.route("/data")
 def dummy():

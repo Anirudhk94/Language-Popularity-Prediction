@@ -2,23 +2,53 @@
 <html>
 
 <head>
-  <title>Programming Language Analysis</title>
-  <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css')}}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Language Analysis</title>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
+     <link rel="stylesheet" href="{{ url_for ('static', filename='css/my-css.css')}}">
 </head>
 
 <body class="application">
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./">Programming Language Usage Analysis</a>
+        <div class="navbar-brand" style="color:white">CSE 564 - Data Visualisation</div>
       </div>
     </div>
-  </div>
+    </div>
+
+    <div class="jumbotron">
+    <div class="container">
+    <div data-step="1">
+      <h1>Analysis of Programming Language Usage</h1>
+      <p>Based on the Stack Overflow Survey 2018 Results</p>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Total Selected Developer Responses
+          </div>
+          <div class="chart-stage">
+            <div id="numberSelectedND"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <button class="btn btn-warning" >Clear Selections</button>
+      </div>
+    </div>
+    </div>
+    </div>
 
 
-  <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
 </body>
 
-</html> 
+</html>
