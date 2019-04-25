@@ -8,7 +8,6 @@ import json
 app = Flask(__name__)
 
 # Info for local connection to MongoDB
-MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://singham:'+urllib.quote("Logix@1994")+'@cluster0-shard-00-00-coysm.mongodb.net:27017,cluster0-shard-00-01-coysm.mongodb.net:27017,cluster0-shard-00-02-coysm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true')
 DBS_NAME = os.getenv('DBS_NAME', 'language_popularity')
 COLLECTION_NAME = 'stackoverflow'
 
@@ -43,7 +42,7 @@ def dummy():
     A Flask view to serve projected data from MongoDB in JSON format
     """
     # A constant that defines the record fields that we wish to retrieve
-    # Need to explicitly exclude '_id' field as it it automatically included in the retured documents
+    # Need to explicitly exclude '_id' field as it it automatically included in the returned documents
     FIELDS = {
         '_id': False, 'Professional': True, 'Country': True,
         'EmploymentStatus': True, 'FormalEducation': True, 'MajorUndergrad': True,
