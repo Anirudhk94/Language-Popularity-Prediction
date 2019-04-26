@@ -8,47 +8,54 @@
     <title>Programming Language Analysis</title>
     <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
-     <link rel="stylesheet" href="{{ url_for ('static', filename='css/my-css.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/my-css.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
 </head>
 
 <body class="application">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-      <div class="navbar-header">
-        <div class="navbar-brand" style="color:white">CSE 564 - Data Visualisation</div>
-      </div>
-    </div>
-    </div>
-
-    <div class="jumbotron">
-    <div class="container">
-    <div data-step="1">
-      <h1>Analysis of Programming Language Usage</h1>
-      <p>Based on the Stack Overflow Survey 2018 Results</p>
-    </div>
-    <div class="row">
-      <div class="col-sm-5">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Total Selected Developer Responses
-          </div>
-          <div class="chart-stage">
-            <div id="numberSelectedND"></div>
-          </div>
+        <div class="navbar-header">
+            <div class="navbar-brand" style="color:white">CSE 564 Data Visualisation</div>
         </div>
-      </div>
-      <div class="col-sm-7">
-        <button class="btn btn-warning" >Clear Selections</button>
-      </div>
     </div>
+</div>
+
+<div class="jumbotron">
+    <div class="container">
+        <div data-step="1">
+            <h1>Analysis of Programming <br/>Language Usage</h1>
+            <p>Based on the Stack Overflow Survey 2018 Results</p>
+        </div>
+        <div class="row">
+            <!-- Number Display - Number of Selected -->
+            <div class="col-sm-5">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Total Selected Developer Responses
+                    </div>
+                    <div class="chart-stage">
+                        <div id="numberSelectedND"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Clear and Tour buttons -->
+            <div class="col-sm-7">
+                <button class="btn btn-warning" onclick="clear_charts()">Clear Selections</button>
+            </div>
+        </div>
     </div>
-    </div>
+</div>
 
 
-    <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
-    <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
-    <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
-    <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
+<script src="{{ url_for ('static', filename='js/app.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/crossfilter.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
 </body>
 
 </html>
