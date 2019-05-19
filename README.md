@@ -6,9 +6,21 @@ With new programming technologies and frameworks being developed every year, the
 Anirudh Kulkarni
 
 # References
+- Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB <br/>
+http://adilmoujahid.com/posts/2015/01/interactive-data-visualization-d3-dc-python-mongodb/
+
 - A look at Queue.js and how you can load multiple files before running the rest of the code. <br/>
 https://github.com/d3/d3-queue <br/>
 http://bl.ocks.org/mapsam/6090056
 
 - dc.js - Number Display Example<br/>
- https://github.com/dc-js/dc.js/blob/master/web/examples/number.html
+https://github.com/dc-js/dc.js/blob/master/web/examples/number.html
+ 
+- A meaningless example of multiple selectMenus on some random data. <br/>
+https://dc-js.github.io/dc.js/examples/select.html
+
+- For ARIMA - ARIMA and Python: Stock Price Forecasting using statsmodels<br/>
+https://www.youtube.com/watch?v=o7Ux5jKEbcw
+
+- For Strem Chart<br/>
+http://bl.ocks.org/WillTurman/4631136#index.html

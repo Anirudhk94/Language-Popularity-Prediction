@@ -16,9 +16,26 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <div class="navbar-brand" style="color:white">CSE 564 Data Visualisation</div>
+            <a class="navbar-brand" href="/">CSE 564 Data Visualisation</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/geo">Demography</a></li>
+                <li><a href="/time_series">Popularity Prediction</a></li>
+                <li class="dropdown">
+                    <ul class="dropdown-menu">
+                        <li><a href="/geo">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
+
 </div>
 
 <div class="jumbotron">
@@ -47,15 +64,113 @@
     </div>
 </div>
 
+<div class="keen-dashboard container-fluid">
+
+    <!-- ROW 1 -->
+    <div class="row" data-position="down">
+        <!-- Menu Select - Developer Type -->
+        <div class="col-sm-6">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Select Developer Type
+                </div>
+                <div class="chart-stage">
+                    <div id="developerTypeMenu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.ROW 1 -->
+
+    <!-- /.ROW 2 -->
+    <div class="row">
+        <!-- Bar Chart - Languages -->
+        <div class="col-xs-12">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Programming Languages Popularity for 2018
+                </div>
+                <div class="chart-stage" id="languageChartContainer">
+                    <div id="languageChart"></div>
+                </div>
+                <div class="chart-notes">
+                    <p class="text-muted">Programming Languages and technologies used for development work in 2018 as per Stackoverflow survey results</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.ROW 3 -->
+    <div class="row">
+        <!-- Bar Chart - Languages -->
+        <div class="col-xs-8">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Integrated Development Environment Usage
+                </div>
+                <div class="chart-stage" id="ideChartContainer">
+                    <div id="ideChart"></div>
+                </div>
+                <div class="chart-notes">
+                    <p class="text-muted">This plot gives an estimate of the IDEs used by a given type of developer</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Gender Distribution
+                </div>
+                <div class="chart-stage">
+                    <div id="genderChart"></div>
+                </div>
+                <div class="chart-notes">
+                    <p class="text-muted">This plot gives an estimate of the gender distribution for the applied filters</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.ROW 3 -->
+    <!-- ROW 4 -->
+    <div class="row" data-step="6" data-intro="Here are a couple of charts showing most popular database environments and web frameworks/libraries based on your selections. You can also click on the bars to filter by specific database or framework" data-position="down">
+        <!-- Row Chart - Database Worked With-->
+        <div class="col-sm-6">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Database Environments Have Worked With
+                </div>
+                <div class="chart-stage">
+                    <div id="databaseChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row Chart - Framework Worked With -->
+        <div class="col-sm-6">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Frameworks, Libraries, &amp; Tools Have Worked With
+                </div>
+                <div class="chart-stage">
+                    <div id="frameworkChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. ROW 4 -->
+
+</div>
+
 
 <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/d3-tip.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
-<script src="{{ url_for ('static', filename='js/app.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/crossfilter.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
+<script src="{{ url_for ('static', filename='js/app.js')}}"></script>
 </body>
 
 </html>
