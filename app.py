@@ -2,8 +2,10 @@ import os
 from flask import Flask
 from flask import render_template
 from pymongo import MongoClient
+from collections import defaultdict
 import urllib
 import json
+
 import pandas as pd
 
 app = Flask(__name__)
@@ -37,8 +39,11 @@ def index():
     #     projects = collection.find();
     #     print(json.dumps(list(projects)));
 
+
+
+
 @app.route("/data")
-def dummy():
+def fetch_data():
     """
     A Flask view to serve projected data from MongoDB in JSON format
     """
@@ -74,5 +79,41 @@ def dummy():
         # Convert projects to a list in a JSON object and return the JSON data
         return json.dumps(list(projects))
 
+
+@app.route('/geo')
+def geo():
+    return render_template('geo.html')
+
+@app.route("/bubble_data")
+def bubble_chart():
+    list_bubble = []
+    df = pd.read_csv("survey_results_public.csv")
+    t = df['Country'].value_counts().to_frame().reset_index()
+    num = 1
+    cnt = 1
+    for j, x in t.iterrows():
+        name = x['index'].replace('"', '').replace("'", "").split(",")[0]
+        value = x['Country']
+        bubble = []
+        if value > 200:
+            bubble.append(name)
+            bubble.append(value)
+            list_bubble.append(bubble)
+        if cnt % 2 == 0:
+            num += 1
+        cnt += 1
+        if cnt == 100:
+            break
+    result = pd.DataFrame(list_bubble, columns=['name', 'value'])
+    print(result)
+    return result.to_json(orient='records')
+
+
+@app.route('/time_series')
+def time_series():
+    return render_template('time-series.html')
+
 if __name__ == '__main__':
+    # dummy()
+    # bubble_chart()
     app.run(debug=True)
