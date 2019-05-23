@@ -1,7 +1,7 @@
 console.log('Welcome to CSE 564!');
 queue()
     .defer(d3.json, "/data")
-    .await(constructGraphs);
+    .await(constructDesiredGraphs);
 
 function remove_NA_keys(source_group) {
     return {
@@ -18,12 +18,12 @@ var clear_charts = function() {
     dc.renderAll();
 }
 
-function constructGraphs(error, data) {
+function constructDesiredGraphs(error, data) {
     if (error) {
         console.error("makeGraphs error on receiving dataset:", error.statusText);
         throw error;
     }
-    console.log('In constructGraphs!');
+    console.log('In constructDesiredGraphs!');
     $("#loader").fadeOut();
 
 
@@ -33,12 +33,10 @@ function constructGraphs(error, data) {
 
     // Split the multi-valued attributes
     data.forEach(function (d) {
-        d.LanguageWorkedWith    = d.LanguageWorkedWith.split(";");
-        d.FrameworkWorkedWith   = d.FrameworkWorkedWith.split(";");
-        d.DatabaseWorkedWith    = d.DatabaseWorkedWith.split(";");
-        d.DevType               = d.DevType.split(";");
-        d.IDE                   = d.IDE.split(";");
-        d.VersionControl        = d.VersionControl.split(";");
+        d.LanguageDesireNextYear    = d.LanguageDesireNextYear.split(";");
+        d.FrameworkDesireNextYear   = d.FrameworkDesireNextYear.split(";");
+        d.DatabaseDesireNextYear    = d.DatabaseDesireNextYear.split(";");
+        d.DevType                   = d.DevType.split(";");
     });
     console.log(data);
 
@@ -74,7 +72,7 @@ function constructGraphs(error, data) {
      * LANGUAGE BAR CHART - ordinal scale
      */
     var languageDim = stack2018.dimension(function (d) {
-        return d.LanguageWorkedWith;
+        return d.LanguageDesireNextYear;
     }, true);
     var languageGroup = languageDim.group();
     // filter out 'NA' keys from data
@@ -101,80 +99,11 @@ function constructGraphs(error, data) {
         .title(function(d) {return "";})
         .yAxis().ticks(6);
 
-
-    // IDE used menu select
-    // https://github.com/crossfilter/crossfilter/wiki/API-Reference#dimension
-    var ideDim = stack2018.dimension(function (d) {
-        return d.IDE;
-    }, true);
-
-    var ideGroup = ideDim.group();
-    var ideGroup_filtered = remove_NA_keys(ideGroup);
-//    console.log(ideGroup_filtered);
-
-    // filter out "NA" data keys from chart
-    var ideMenu = dc.selectMenu("#ideMenu");
-    ideMenu
-        .dimension(ideDim)
-        .group(ideGroup_filtered);
-
-    var ideChart = dc.barChart("#ideChart");
-    var ideBarChartWidth = $('#ideChartContainer').offsetWidth;
-
-    ideChart
-        .width(ideBarChartWidth)
-        .height(350)
-        .margins({ top: 30, right: 50, bottom: 80, left: 50 })
-        .dimension(ideDim)
-        .group(ideGroup_filtered)
-        .ordinalColors(["#FFC966"])
-        .transitionDuration(1000)
-        .x(d3.scale.ordinal())
-        .xUnits(dc.units.ordinal)
-        .elasticY(true)
-        .gap(3)
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
-        .title(function(d) {return "";})
-        .yAxis().ticks(6);
-
-
-    // Gender distribution of responses
-    var genderDim = stack2018.dimension(function (d) {
-        return d.Gender;
-    });
-    var genderGroup = genderDim.group();
-    var genderGroup_filtered = remove_NA_keys(genderGroup);
-    var genderChart = dc.pieChart("#genderChart");
-
-    genderChart
-        .height(350)
-        .innerRadius(50)
-        .slicesCap(2)
-        .drawPaths(true)
-        .dimension(genderDim)
-        .group(genderGroup_filtered)
-        .transitionDuration(200)
-        .title(function(d) {return "";})
-        .legend(dc.legend().x(400))
-
-    genderChart
-        .on('pretransition', function(chart) {
-          chart.selectAll('.dc-legend-item text')
-              .text('')
-            .append('tspan')
-              .text(function(d) { return d.name; })
-            .append('tspan')
-              .attr('x', 100)
-              .attr('text-anchor', 'end')
-              .text(function(d) { return d.data; });
-        });
-
     /**
      * DATABASES row chart
      */
     var databaseDim = stack2018.dimension(function (d) {
-        return d.DatabaseWorkedWith;
+        return d.DatabaseDesireNextYear;
     }, true);
     var languageByDatabaseGroup = databaseDim.group();
     // filter out "NA" data keys from chart
@@ -199,7 +128,7 @@ function constructGraphs(error, data) {
      * FRAMEWORKS row chart
      */
     var frameworkDim = stack2018.dimension(function (d) {
-        return d.FrameworkWorkedWith;
+        return d.FrameworkDesireNextYear;
     }, true)
     var languageByFrameworkGroup = frameworkDim.group();
     // filter out "NA" data keys from chart

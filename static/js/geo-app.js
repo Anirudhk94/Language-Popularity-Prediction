@@ -12,6 +12,7 @@ $.ajax({
 });
 
 var constructBubble = function(json) {
+    $("#loader").fadeOut();
     var diameter = 1000,
         color = d3.scaleOrdinal(d3.schemeCategory20c);
 

@@ -126,7 +126,6 @@ var graph = d3.csv(csvpath, function(data) {
         datearray[k] = selected[k].date
         datearray[k] = datearray[k].getYear();
       }
-//      console.log(datearray);
       mousedate = datearray.indexOf(invertedx);
       pro = d.values[mousedate].value;
 
